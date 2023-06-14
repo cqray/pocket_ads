@@ -1,8 +1,9 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:pocket_ads/pocket_ads_interface.dart';
 
 import 'pocket_ads_method_channel.dart';
 
-abstract class PocketAdsPlatform extends PlatformInterface {
+abstract class PocketAdsPlatform extends PlatformInterface implements PocketAdsInterface {
   /// Constructs a PocketAdsPlatform.
   PocketAdsPlatform() : super(token: _token);
 
@@ -24,6 +25,10 @@ abstract class PocketAdsPlatform extends PlatformInterface {
   }
 
   Future<String?> getPlatformVersion() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<String?> test(String s) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

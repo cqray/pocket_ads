@@ -42,7 +42,8 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
+        multiDexEnabled true
     }
 
     repositories {
@@ -51,6 +52,8 @@ android {
             dirs 'libs'
         }
     }
+
+
 
 //    dependencies {
 //        testImplementation 'org.jetbrains.kotlin:kotlin-test'
@@ -72,6 +75,11 @@ android {
 
 
 dependencies {
+
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'com.google.android.material:material:1.1.0'
+    api 'androidx.multidex:multidex:2.0.1'
+
     api(name: 'csj_ad_sdk_230215', ext: 'aar')
     api(name: 'gdt_ad_sdk_230210', ext: 'aar')
     api(name: 'ks_ad_sdk_230116', ext: 'aar')

@@ -32,7 +32,11 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await _pocketAdsPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _pocketAdsPlugin.test("7777") ?? 'Unknown platform version';
+      await _pocketAdsPlugin.init("xiaomi", "11723");
+      Future.delayed(Duration(seconds: 5), () {
+        _pocketAdsPlugin.loadRewardVideoAD();
+      });
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }

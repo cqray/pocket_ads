@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "cn.cqray.plugin.pocket_ads.pocket_ads_example"
+    namespace "com.pocket.zxpa"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -45,13 +45,15 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "cn.cqray.plugin.pocket_ads.pocket_ads_example"
+
+        applicationId "com.pocket.topbrowser"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -59,6 +61,13 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+        }
+    }
+
+    repositories {
+        maven { url 'https://jitpack.io' }
+        flatDir {
+            dirs 'libs'
         }
     }
 }
@@ -69,4 +78,8 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation(name: 'csj_ad_sdk_230215', ext: 'aar')
+    implementation(name: 'gdt_ad_sdk_230210', ext: 'aar')
+    implementation(name: 'ks_ad_sdk_230116', ext: 'aar')
+    implementation(name: 'pocket_ad_sdk_3.2.8', ext: 'aar')
 }

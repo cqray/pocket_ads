@@ -7,6 +7,7 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.os.*
+import androidx.multidex.MultiDex
 import com.blankj.utilcode.util.Utils
 import java.util.*
 
@@ -24,6 +25,7 @@ internal class _ContextInit : ContentProvider() {
     override fun onCreate(): Boolean {
         // 初始化Application
         application = context!!.applicationContext as Application
+        MultiDex.install(application)
         Utils.init(application)
         return false
     }

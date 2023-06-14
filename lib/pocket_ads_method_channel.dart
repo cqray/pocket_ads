@@ -14,4 +14,23 @@ class MethodChannelPocketAds extends PocketAdsPlatform {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
+
+  @override
+  Future<String?> test(String s) async {
+    final version = await methodChannel.invokeMethod<String>('test', s);
+    return version;
+  }
+
+  @override
+  Future<void> init(String channel, String appId) async {
+    var params = {}
+      ..putIfAbsent("channel", () => channel)
+      ..putIfAbsent("appId", () => appId);
+    return await methodChannel.invokeMethod<void>("init", params);
+  }
+
+  @override
+  Future<void> loadRewardVideoAD() async {
+    return await methodChannel.invokeMethod<void>("loadRewardVideoAD");
+  }
 }

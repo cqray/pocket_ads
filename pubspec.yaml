@@ -37,7 +37,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: cn.cqray.plugin.pocket_ads.pocket_ads
+        package: cn.cqray.plugin.pocket_ads
         pluginClass: PocketAdsPlugin
       ios:
         pluginClass: PocketAdsPlugin

@@ -19,4 +19,16 @@ class PocketAdsWeb extends PocketAdsPlatform {
     final version = html.window.navigator.userAgent;
     return version;
   }
+
+  @override
+  Future<void> init(String channel, String appId) {
+    // TODO: implement init
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> loadRewardVideoAD() {
+    // TODO: implement loadRewardVideoAD
+    throw UnimplementedError();
+  }
 }
