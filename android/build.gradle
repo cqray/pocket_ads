@@ -1,0 +1,100 @@
+group 'cn.cqray.plugin.pocket_ads.pocket_ads'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+
+    repositories {
+        maven { url 'https://jitpack.io' }
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+//    dependencies {
+//        testImplementation 'org.jetbrains.kotlin:kotlin-test'
+//        testImplementation 'org.mockito:mockito-core:5.0.0'
+//    }
+
+//    testOptions {
+//        unitTests.all {
+//            useJUnitPlatform()
+//
+//            testLogging {
+//               events "passed", "skipped", "failed", "standardOut", "standardError"
+//               outputs.upToDateWhen {false}
+//               showStandardStreams = true
+//            }
+//        }
+//    }
+}
+
+
+dependencies {
+    api(name: 'csj_ad_sdk_230215', ext: 'aar')
+    api(name: 'gdt_ad_sdk_230210', ext: 'aar')
+    api(name: 'ks_ad_sdk_230116', ext: 'aar')
+    api(name: 'pocket_ad_sdk_3.2.8', ext: 'aar')
+
+    //noinspection GradleDependency
+    api 'com.squareup.okhttp3:okhttp:4.9.2'
+    //noinspection GradleDependency
+    api 'com.google.code.gson:gson:2.8.8'
+    api 'androidx.legacy:legacy-support-core-ui:1.0.0'
+
+    // 常用工具类
+    api 'com.blankj:utilcodex:1.30.6'
+
+    compileOnly files("${getFlutterSdkPath()}/bin/cache/artifacts/engine/android-arm/flutter.jar")
+}
+
+/// 获取Flutter Sdk的地址
+String getFlutterSdkPath() {
+    // 读取local.properties配置
+    def properties = new Properties()
+    def file = rootProject.file('local.properties')
+    if (file.exists()) file.withReader('UTF-8') { properties.load(it) }
+    // 读取flutter.sdk属性
+    return properties.getProperty('flutter.sdk')
+}
